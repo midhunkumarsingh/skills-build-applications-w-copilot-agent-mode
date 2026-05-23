@@ -4,11 +4,6 @@ import ResourcePage from './ResourcePage'
 export default function Workouts() {
   const [data, setData] = useState([])
 
-  useEffect(() => {
-    fetch('http://localhost:8000/api/workouts')
-      .then(res => res.json())
-      .then(data => setData(data))
-  }, [])
 
   return (
     <ResourcePage
