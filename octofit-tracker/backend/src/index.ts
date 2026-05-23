@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import connectDB from './config/database'
 import User from './models/User'
 import Team from './models/Team'
@@ -11,6 +12,7 @@ dotenv.config()
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8000
 const HOST = '0.0.0.0'

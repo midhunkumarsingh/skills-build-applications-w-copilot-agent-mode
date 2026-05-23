@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { buildApiUrl, normalizeApiResponse, API_BASE_URL, CODESPACE_NAME, API_HOST } from './api'
+import { buildApiUrl, normalizeApiResponse, API_BASE_URL, CODESPACE_NAME } from './api'
+
+// When Codespaces name is not provided, show the safe fallback host derived from API_BASE_URL
+const SAFE_FALLBACK_HOST = API_BASE_URL.replace(/^https?:\/\//, '').replace(/\/api$/, '')
 
 function formatValue(value) {
   if (value === null || value === undefined) {
@@ -68,7 +71,7 @@ export default function ResourcePage({ resource, title, columns = [] }) {
           <p className="mb-1">API endpoint: <code>{`${API_BASE_URL}/${resource}`}</code></p>
           {!CODESPACE_NAME ? (
             <div className="alert alert-warning py-2 px-3 mt-2" role="alert">
-              <strong>Warning:</strong> `VITE_CODESPACE_NAME` is not defined. The app is using <code>{API_HOST}</code> as a safe fallback.
+              <strong>Warning:</strong> `VITE_CODESPACE_NAME` is not defined. The app is using <code>{SAFE_FALLBACK_HOST}</code> as a safe fallback.
             </div>
           ) : null}
         </div>
