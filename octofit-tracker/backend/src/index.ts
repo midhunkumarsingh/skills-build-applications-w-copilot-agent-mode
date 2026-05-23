@@ -13,6 +13,7 @@ const app = express()
 app.use(express.json())
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8000
+const HOST = '0.0.0.0'
 const CODESPACE_NAME = process.env.CODESPACE_NAME
 const API_BASE_URL = CODESPACE_NAME
   ? `https://${CODESPACE_NAME}-8000.app.github.dev`
@@ -83,7 +84,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'OctoFit Tracker API', apiBaseUrl: API_BASE_URL })
 })
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`)
+app.listen(PORT, HOST, () => {
+  console.log(`Server listening on ${HOST}:${PORT}`)
   console.log(`API base URL: ${API_BASE_URL}`)
 })
